@@ -45,9 +45,9 @@ public class GameManager : MonoBehaviour
     public Sprite CatTricky;
 
     //private variables have to be set in code
-    private int currentQuestion; //Keep track of which questions
-    private int badAnswers; //Count Bad Answers
-    private int goodAnswers; //Count Good Answers
+    public int currentQuestion; //Keep track of which questions
+    public int badAnswers; //Count Bad Answers
+    public int goodAnswers; //Count Good Answers
 
 
     [Header("Questions")] //add a header to this section
@@ -79,106 +79,186 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        CatImage.sprite = CatCoy;
+        currentQuestion = 0;
+        goodAnswers = 0;
+        badAnswers = 0;
+
+        QuestionText.text = Questions[currentQuestion]; 
+        AnswerLeftText.text = Answers1[currentQuestion]; 
+        AnswerRightText.text = Answers2[currentQuestion]; 
     }
 
     public void ClickedRight()
     {
-        if (currentQuestion >= 7) //Now all questions answered, so it's time to give a result.
+        if (currentQuestion == 6) //Now all questions answered, so it's time to give a result.
         {
             GiveResult();
+            Debug.Log("Done with All questions. give result");
         }
-        else
-        {
+      
             if (currentQuestion == 0)
             {
-                CatImage.sprite = CatCoy;
+                 Debug.Log("There hello");
                 goodAnswers++;
-            }
+         
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 1)
             {
                 CatImage.sprite = CatExcited;
                 badAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 2)
             {
                 CatImage.sprite = CatNormal;
-                badAnswers++;
-            }
+                goodAnswers++;
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 3)
             {
                 CatImage.sprite = CatJoy;
-                badAnswers++;
-            }
+                goodAnswers++;
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 4)
             {
                 CatImage.sprite = CatTricky;
                 badAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 5)
             {
                 CatImage.sprite = CatJoy;
                 badAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 6)
             {
                 CatImage.sprite = CatAgony;
                 badAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
 
             NextQuestion();
         }
+
+        
+        
     }
 
     public void ClickedLeft()
     {
-        if (currentQuestion >= 7) //Now all questions answered, so it's time to give a result.
+        if (currentQuestion == 6) //Now all questions answered, so it's time to give a result.
         {
             GiveResult();
         }
-        else
-        {
+       
             if (currentQuestion == 0)
             {
+                Debug.Log("Hi there");
                 CatImage.sprite = CatCoy;
                 goodAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 1)
             {
                 CatImage.sprite = CatJoy;
                 goodAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 2)
             {
                 CatImage.sprite = CatMad;
                 badAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 3)
             {
                 CatImage.sprite = CatSad;
                 badAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 4)
             {
                 CatImage.sprite = CatCoy;
                 goodAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 5)
             {
                 CatImage.sprite = CatLove;
                 goodAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
+
+            NextQuestion();
+        }
             else if (currentQuestion == 6)
             {
                 CatImage.sprite = CatHappy;
                 goodAnswers++;
-            }
+                QuestionText.text = Questions[currentQuestion];
+                AnswerLeftText.text = Answers1[currentQuestion];
+                AnswerRightText.text = Answers2[currentQuestion];
 
             NextQuestion();
         }
+
+
     }
 
-    private void NextQuestion()
+    public void NextQuestion()
     {
+        Debug.Log("Running next question");
         currentQuestion++; //moving on to the next question
         QuestionText.text = Questions[currentQuestion]; //setting the text to the next question
         AnswerLeftText.text = Answers1[currentQuestion]; //setting the text to the next answer
@@ -199,13 +279,14 @@ public class GameManager : MonoBehaviour
             QuestionText.text = "I can't live with you..."; //Cat can't live with you
             CatImage.sprite = CatSleepy; //Set cat sprite
         }
-        
-        // I deleted something here. Wonder what it was...
+
+        StartCoroutine(ShowGameOverPanelAfterSeconds(2));
+        //Im on to you, aaron
     }
 
     public void ReloadScene()
     {
-        // Use the SceneManager class to load a scene
+        SceneManager.LoadScene("EmojiCat");
     }
 
     public void ResetGameData()
@@ -220,6 +301,7 @@ public class GameManager : MonoBehaviour
     public void QuitGame()
     {
         // There's an example of how to do this in the class materials
+        
     }
     
     private IEnumerator ShowGameOverPanelAfterSeconds(float delay)
