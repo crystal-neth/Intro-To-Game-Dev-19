@@ -49,7 +49,6 @@ public class GameManager : MonoBehaviour
     public int badAnswers; //Count Bad Answers
     public int goodAnswers; //Count Good Answers
 
-
     [Header("Questions")] //add a header to this section
     [TextArea(2, 10)]
     //display the list of strings that follows as text areas, with a min or 2 lines & a max of 10 lines for the text
@@ -92,7 +91,7 @@ public class GameManager : MonoBehaviour
 
     public void ClickedRight()
     {
-        if (currentQuestion == 6) //Now all questions answered, so it's time to give a result.
+        if (currentQuestion > 6) //Now all questions answered, so it's time to give a result.
         {
             GiveResult();
             Debug.Log("Done with All questions. give result");
@@ -168,15 +167,12 @@ public class GameManager : MonoBehaviour
                 AnswerRightText.text = Answers2[currentQuestion];
 
             NextQuestion();
-        }
-
-        
-        
+        }      
     }
 
     public void ClickedLeft()
     {
-        if (currentQuestion == 6) //Now all questions answered, so it's time to give a result.
+        if (currentQuestion > 6) //Now all questions answered, so it's time to give a result.
         {
             GiveResult();
         }
@@ -252,8 +248,6 @@ public class GameManager : MonoBehaviour
 
             NextQuestion();
         }
-
-
     }
 
     public void NextQuestion()
@@ -267,6 +261,7 @@ public class GameManager : MonoBehaviour
 
     private void GiveResult()
     {
+       
         AnswerLeftText.text = ""; //set answer to blank
         AnswerRightText.text = ""; //set answer to blank
         if (goodAnswers > badAnswers) //if more good answers than bad
@@ -276,12 +271,10 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-            QuestionText.text = "I can't live with you..."; //Cat can't live with you
+            QuestionText.text = "I can't live with you..."; //Cat can't live with you. Idk what happens next but I'm betting it shoots you?
             CatImage.sprite = CatSleepy; //Set cat sprite
         }
-
-        StartCoroutine(ShowGameOverPanelAfterSeconds(2));
-        //Im on to you, aaron
+        StartCoroutine(ShowGameOverPanelAfterSeconds(2)); //im onto you aaron
     }
 
     public void ReloadScene()
@@ -300,8 +293,11 @@ public class GameManager : MonoBehaviour
 
     public void QuitGame()
     {
-        // There's an example of how to do this in the class materials
-        
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#else
+        Application.Quit ();
+#endif
     }
     
     private IEnumerator ShowGameOverPanelAfterSeconds(float delay)
